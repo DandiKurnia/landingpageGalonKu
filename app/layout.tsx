@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "GalonKu",
-  description: "Landing page for GalonKu",
+  title: "GalonKu - Isi Ulang Galon Otomatis",
+  description: "Praktis, Otomatis, dan Aman. GalonKu memudahkan Anda memesan isi galon berkualitas dari dispenser otomatis terdekat.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

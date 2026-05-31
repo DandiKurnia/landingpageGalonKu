@@ -4,10 +4,28 @@
   --font-sans: var(--font-inter);
   --color-primary: #2F80ED;
   --color-primary-dark: #1C3D5A;
+  --color-primary-light: #56CCF2;
+  --color-primary-pale: #EBF4FF;
+  --color-primary-hover: #2466c7;
 }
 
 @layer utilities {
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+
+  .bg-water-texture {
+    @apply bg-primary relative;
+    background-image:
+      radial-gradient(
+        circle at top right,
+        rgba(86, 204, 242, 0.8) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at bottom left,
+        rgba(47, 128, 237, 0.8) 0%,
+        transparent 60%
+      );
   }
 }
