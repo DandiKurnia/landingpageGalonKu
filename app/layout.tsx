@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "GalonKu - Isi Ulang Galon Otomatis",
   description: "Praktis, Otomatis, dan Aman. GalonKu memudahkan Anda memesan isi galon berkualitas dari dispenser otomatis terdekat.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

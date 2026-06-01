@@ -1,0 +1,14 @@
+services:
+  galonkulanding:
+    image: dandikurnia/galonkulanding:latest
+    container_name: galonkulanding
+    restart: unless-stopped
+    ports:
+      - "3005:3005"
+    environment:
+      TZ: Asia/Jakarta
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3005"]
+      interval: 15s
+      timeout: 10s
+      retries: 3

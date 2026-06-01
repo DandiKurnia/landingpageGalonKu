@@ -1,8 +1,8 @@
 "use client";
-import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Zap, Globe, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { FaInstagram, FaWhatsapp, FaFacebookF } from "react-icons/fa";
 
 const menuLinks = [
   { label: "Beranda", href: "#beranda" },
@@ -23,31 +23,26 @@ const contactItems = [
 ];
 
 const socialLinks = [
-  { icon: Globe, href: "#", label: "Facebook", color: "bg-primary hover:bg-primary-hover" },
-  { icon: InstagramFallback, href: "#", label: "Instagram", color: "bg-primary hover:bg-primary-hover" },
-  { icon: MessageCircle, href: "#", label: "WhatsApp", color: "bg-green-500 hover:bg-green-600" },
+  {
+    icon: FaFacebookF,
+    href: "#",
+    label: "Facebook",
+    color: "bg-blue-600 hover:bg-blue-700",
+  },
+  {
+    icon: FaInstagram,
+    href: "#",
+    label: "Instagram",
+    color: "bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 hover:opacity-90",
+  },
+  {
+    icon: FaWhatsapp,
+    href: "#",
+    label: "WhatsApp",
+    color: "bg-green-500 hover:bg-green-600",
+  },
 ];
 
-function InstagramFallback(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
 
 export default function Footer() {
   return (
@@ -118,9 +113,9 @@ export default function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className={`w-9 h-9 rounded-full text-white flex items-center justify-center transition-colors ${s.color}`}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 ${s.color}`}
                 >
-                  <s.icon size={16} />
+                  <s.icon size={18} />
                 </a>
               ))}
             </div>
@@ -134,9 +129,13 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-2 text-xs text-slate-400">
             Powered by
-            <span className="font-bold text-slate-600 flex items-center gap-1">
-              <Zap size={12} className="text-primary" /> Xendit
-            </span>
+            <Image
+              src="/images/paymentGateway/xendit.png"
+              alt="Xendit"
+              width={120}
+              height={40}
+              className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+            />
           </div>
         </div>
       </div>
