@@ -125,7 +125,11 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-400">
-            &copy; {new Date().getFullYear()} GalonKu. All rights reserved.
+            &copy;{" "}
+            <span suppressHydrationWarning>
+              {new Date().getFullYear()}
+            </span>{" "}
+            GalonKu. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-xs text-slate-400">
             Powered by

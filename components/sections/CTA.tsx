@@ -22,7 +22,8 @@ export default function CTA() {
             Siap untuk hidup lebih praktis?
           </h2>
           <p className="text-blue-50/90 text-xl leading-relaxed">
-            Pesan isi galon otomatis sekarang dan nikmati kemudahan tanpa ribet. Tersedia 24/7 untuk memenuhi kebutuhan Anda.
+            Pesan isi galon otomatis sekarang dan nikmati kemudahan tanpa ribet.
+            Tersedia 24/7 untuk memenuhi kebutuhan Anda.
           </p>
         </div>
 
@@ -33,9 +34,9 @@ export default function CTA() {
         >
           <a
             href="#"
-            className="inline-flex items-center gap-3 bg-white text-primary font-extrabold text-xl px-10 py-5 rounded-2xl hover:bg-slate-50 transition-colors shadow-xl"
+            className="inline-flex items-center gap-3 bg-white text-primary font-extrabold text-lg md:text-xl md:px-10 md:py-5 py-3 px-6 rounded-2xl hover:bg-slate-50 transition-colors shadow-xl"
           >
-            Download App <Download size={24} strokeWidth={3} />
+            Download App <Download size={20} strokeWidth={3} />
           </a>
         </motion.div>
       </motion.div>
