@@ -1,17 +1,24 @@
 import { NextResponse } from 'next/server';
 import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
+import Redis from 'ioredis';
 
-// Only initialize Ratelimit if UPSTASH vars are present to prevent crashes during local dev if missing
-const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
 
-const ratelimit = (redisUrl && redisToken) 
-  ? new Ratelimit({
-      redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(10, '1 m'),
-    })
-  : null;
+let ratelimit: Ratelimit | null = null;
+
+try {
+  const redis = new Redis(redisUrl, {
+    lazyConnect: true,
+    maxRetriesPerRequest: 1,
+  });
+  ratelimit = new Ratelimit({
+    redis: redis as any,
+    limiter: Ratelimit.slidingWindow(10, '1 m'),
+    analytics: false,
+  });
+} catch (err) {
+  console.warn('Redis connection failed, rate limiting disabled:', err);
+}
 
 export async function POST(req: Request) {
   try {
@@ -50,7 +57,7 @@ export async function POST(req: Request) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': fastApiKey, 
+        'X-API-Key': fastApiKey,
       },
       body: JSON.stringify({
         message: message,
@@ -62,13 +69,13 @@ export async function POST(req: Request) {
       const errorText = await response.text();
       console.error('FastAPI error:', response.status, errorText);
       return NextResponse.json(
-        { error: 'Gagal menghubungi AI Assistant.' }, 
+        { error: 'Gagal menghubungi AI Assistant.' },
         { status: response.status }
       );
     }
 
     const data = await response.json();
-    
+
     // 5. Return response
     return NextResponse.json(data);
 
