@@ -50,9 +50,14 @@ export default function ChatWidget() {
         }),
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (parseError) {
+        throw new Error('Gagal mengurai respons server');
+      }
 
-      if (!res.ok) throw new Error(data.error || 'Terjadi kesalahan');
+      if (!res.ok) throw new Error(data?.error || 'Terjadi kesalahan pada server');
 
       if (data.session_id && !sessionId) {
         setSessionId(data.session_id);
@@ -60,14 +65,15 @@ export default function ChatWidget() {
 
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply || data.response || 'No response' }]);
     } catch (error: any) {
-      setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${error.message}` }]);
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Maaf, terjadi kesalahan. Silakan coba lagi.' }]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50" role="region" aria-label="Chat widget">
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -94,7 +100,7 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col gap-4">
+          <div className="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col gap-4" role="log" aria-live="polite">
             {messages.map((msg, idx) => (
               <div key={idx} className={cn(
                   "max-w-[85%] p-3.5 rounded-2xl shadow-sm text-sm leading-relaxed",
@@ -106,10 +112,10 @@ export default function ChatWidget() {
               </div>
             ))}
             {isLoading && (
-              <div className="bg-white text-slate-800 border border-slate-100 p-3.5 rounded-2xl self-start shadow-sm flex gap-1 items-center rounded-bl-sm">
+              <div className="bg-white text-slate-800 border border-slate-100 p-3.5 rounded-2xl self-start shadow-sm flex gap-1 items-center rounded-bl-sm" aria-label="Assistant is typing" role="status">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.15s]"></span>
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.3s]"></span>
               </div>
             )}
             <div ref={messagesEndRef} className="h-1" />
