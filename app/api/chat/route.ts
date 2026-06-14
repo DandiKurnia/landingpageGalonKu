@@ -24,6 +24,7 @@ try {
   };
 
   ratelimit = new Ratelimit({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     redis: redisAdapter as any,
     limiter: Ratelimit.slidingWindow(10, '1 m'),
     analytics: false,

@@ -64,7 +64,7 @@ export default function ChatWidget() {
       let data;
       try {
         data = await res.json();
-      } catch (parseError) {
+      } catch {
         throw new Error('Gagal mengurai respons server');
       }
 
@@ -75,7 +75,7 @@ export default function ChatWidget() {
       }
 
       setMessages(prev => [...prev, { role: 'assistant', content: data.reply || data.response || 'No response' }]);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Chat error:', error);
       setMessages(prev => [...prev, { role: 'assistant', content: 'Maaf, terjadi kesalahan. Silakan coba lagi.' }]);
     } finally {
