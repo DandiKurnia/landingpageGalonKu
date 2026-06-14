@@ -7,12 +7,24 @@ const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
 let ratelimit: Ratelimit | null = null;
 
 try {
-  const redis = new Redis(redisUrl, {
+  const client = new Redis(redisUrl, {
     lazyConnect: true,
     maxRetriesPerRequest: 1,
   });
+
+  // Adapter: @upstash/ratelimit calls evalsha(sha, keys, args) but ioredis
+  // expects evalsha(sha, numkeys, ...keys, ...args). Bridge the gap and
+  // ensure numkeys is always an integer.
+  const redisAdapter = {
+    evalsha: (sha: string, keys: string[], args: (string | number)[]) =>
+      client.evalsha(sha, keys.length, ...keys, ...args.map(String)),
+    eval: (script: string, keys: string[], args: (string | number)[]) =>
+      client.eval(script, keys.length, ...keys, ...args.map(String)),
+    get: (key: string) => client.get(key),
+  };
+
   ratelimit = new Ratelimit({
-    redis: redis as any,
+    redis: redisAdapter as any,
     limiter: Ratelimit.slidingWindow(10, '1 m'),
     analytics: false,
   });
