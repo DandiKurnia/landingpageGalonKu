@@ -43,15 +43,15 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 bg-slate-50 border-t border-slate-100">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="faq" className="py-16 md:py-20 lg:py-24 bg-slate-50 border-t border-slate-100">
+      <div className="max-w-4xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary-dark mb-4">
             Pertanyaan yang Sering Diajukan
           </h2>
           <p className="text-slate-500 text-lg">
@@ -70,7 +70,7 @@ export default function FAQ() {
             <motion.div key={idx} variants={itemVariants}>
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow text-left"
+                className="w-full bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow text-left"
                 aria-expanded={openIndex === idx}
               >
                 <div className="flex items-start justify-between gap-4">

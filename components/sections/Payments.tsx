@@ -43,15 +43,15 @@ const itemVariants = {
 
 export default function Payments() {
   return (
-    <section id="pembayaran" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="pembayaran" className="py-16 md:py-20 lg:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-slate-50 rounded-[2.5rem] p-8 lg:p-16 border border-slate-100"
+          className="bg-slate-50 rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] p-5 sm:p-6 md:p-8 lg:p-16 border border-slate-100"
         >
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-center">
             {/* Left Column: Description */}
             <div className="lg:col-span-5">
               {/* Powered by Xendit Badge */}
@@ -75,7 +75,7 @@ export default function Payments() {
                 />
               </motion.div>
 
-              <h2 className="text-3xl lg:text-4xl font-extrabold text-primary-dark mb-6 leading-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary-dark mb-6 leading-tight">
                 Transaksi Aman dengan <br />
                 <span className="text-primary">Gateway Terpercaya</span>
               </h2>
@@ -121,7 +121,7 @@ export default function Payments() {
                   <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">
                     Transfer Bank
                   </h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-4">
                     {partners.banks.map((bank) => (
                       <motion.div
                         key={bank.name}
@@ -145,7 +145,7 @@ export default function Payments() {
                   <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">
                     E-Wallet
                   </h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-4">
                     {partners.wallets.map((wallet) => (
                       <motion.div
                         key={wallet.name}

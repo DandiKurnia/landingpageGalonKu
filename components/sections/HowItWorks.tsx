@@ -56,30 +56,30 @@ export default function HowItWorks() {
   return (
     <section
       id="cara-penggunaan"
-      className="relative py-24 bg-white overflow-hidden"
+      className="relative py-16 md:py-20 lg:py-24 bg-white overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-primary-dark mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary-dark mb-4 leading-tight">
             Mudah, Cepat, dan <span className="text-primary">Praktis</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
             Hanya 4 langkah sederhana untuk mendapatkan air berkualitas dari
             GalonKu
           </p>
         </motion.div>
 
         {/* Steps Container */}
-        <div className="relative mt-12">
+        <div className="relative mt-8 md:mt-12">
           {/* Dashed Line Connector (Desktop Only) */}
-          <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-[2px] border-t-2 border-dashed border-slate-200 z-0" />
+          <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-[2px] border-t-2 border-dashed border-slate-200 z-0" />
 
           {/* Steps Grid */}
           <motion.div
@@ -87,7 +87,7 @@ export default function HowItWorks() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 lg:gap-6 relative z-10"
           >
             {steps.map((step, index) => {
               const Icon = step.icon;
@@ -98,12 +98,13 @@ export default function HowItWorks() {
                   className="flex flex-col items-center text-center group"
                 >
                   {/* Icon Circle */}
-                  <div className="relative mb-8">
-                    <div className="w-24 h-24 rounded-full bg-white shadow-xl shadow-slate-200/60 flex items-center justify-center text-primary text-4xl border-4 border-white group-hover:scale-110 group-hover:border-blue-100 transition-all duration-300">
-                      <Icon size={40} strokeWidth={1.5} />
+                  <div className="relative mb-6 md:mb-8">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white shadow-xl shadow-slate-200/60 flex items-center justify-center text-primary text-3xl md:text-4xl border-4 border-white group-hover:scale-110 group-hover:border-blue-100 transition-all duration-300">
+                      <Icon size={32} strokeWidth={1.5} className="md:hidden" />
+                      <Icon size={40} strokeWidth={1.5} className="hidden md:block" />
                     </div>
                     {/* Step Number Badge */}
-                    <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm border-4 border-white shadow-lg">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs md:text-sm border-4 border-white shadow-lg">
                       {step.number}
                     </div>
                   </div>

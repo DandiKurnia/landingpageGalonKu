@@ -46,11 +46,11 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-slate-200 pt-20 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+    <footer className="bg-white border-t border-slate-200 pt-16 md:pt-20 pb-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-10 md:gap-8 lg:gap-8 mb-16">
           {/* Brand Info */}
-          <div className="lg:col-span-4">
+          <div className="sm:col-span-2 md:col-span-3 lg:col-span-4">
             <Link href="/" className="flex items-center gap-2 mb-6">
               <Image src="/images/logo.png" alt="GalonKu" width={40} height={40} />
               <div className="flex flex-col">

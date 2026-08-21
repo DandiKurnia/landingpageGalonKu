@@ -96,7 +96,7 @@ export default function ChatWidget() {
       )}
 
       {isOpen && (
-        <div className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl w-[350px] h-[500px] flex flex-col border border-white/40 overflow-hidden sm:w-[400px]">
+        <div className="fixed inset-0 bg-white sm:relative sm:inset-auto bg-white/80 backdrop-blur-xl sm:rounded-2xl shadow-2xl sm:w-[350px] lg:w-[400px] h-full sm:h-[500px] flex flex-col border sm:border-white/40 overflow-hidden z-50">
           <div className="bg-primary text-white p-4 flex justify-between items-center shadow-sm">
             <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5" />

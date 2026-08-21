@@ -43,15 +43,15 @@ const cardVariants = {
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary-dark mb-4">
             Apa Kata Pelanggan Kami?
           </h2>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Testimonials() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {testimonials.map((t) => (
             <motion.div
